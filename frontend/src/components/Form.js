@@ -49,12 +49,12 @@ class Form extends React.Component {
 						>
 							<i className="fas fa-times" />
 						</button>
-						<button className="FormButton"
+						{/* <button className="FormButton"
 							id="updateButton"
-							// onClick={() => this.updateForm()}
+							onClick={() => this.updateForm()}
 						>
 							<i className="fas fa-pencil-alt" />
-						</button>
+						</button> */}
 					</Col>
 				</Row>
 				<Row className="FormRow FormBody">
