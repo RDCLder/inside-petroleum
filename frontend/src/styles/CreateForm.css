@@ -1,0 +1,93 @@
+/*------------------------------------------------
+    CreateForm Component
+-------------------------------------------------*/
+
+#CreateFormHeader, #CreateFormFooter {
+	background: linear-gradient(90deg, #3b5998, #8b9dc3);
+}
+
+#CreateFormHeader {
+	color: white;
+}
+
+#CreateFormContainer {
+	padding: 2%;
+}
+
+#CreateFormContainer > .row {
+	margin: auto;
+}
+
+.CreateFormTextArea {
+	width: 100%;
+	border-radius: 8px;
+}
+
+.CreateFormTextArea:focus {
+	outline: none;
+}
+
+#AddFormButton {
+	bottom: 50px;
+}
+
+/*------------------------------------------------
+    floatButtons
+-------------------------------------------------*/
+
+.floatButton {
+	position: fixed;
+	background-image: linear-gradient(to right, #3b5998, #8b9dc3);
+	color: white;
+	right: 50px;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	text-align: center;
+	box-shadow: 2px 2px 4px #999;
+	font-size: 30px;
+	z-index: 2;
+}
+
+.floatButton:focus {
+	outline: none;
+}
+
+.floatButton:hover {
+	color: black;
+	cursor: pointer;
+}
+
+.floatButton > .fas {
+	font-size: 30px;
+}
+
+.modalDismiss {
+	font-size: 30px;
+}
+
+.modalDismiss:hover {
+	color: black;
+	cursor: pointer;
+}
+
+/*------------------------------------------------
+    alerts
+-------------------------------------------------*/
+
+.alert {
+	position: fixed;
+	top: 10%;
+	right: 2%;
+	z-index: 9999;
+}
+
+.alertDismiss {
+	margin-top: 2%;
+	float: right;
+	font-size: 20px;
+}
+
+.alertDismiss:hover {
+	cursor: pointer;
+}

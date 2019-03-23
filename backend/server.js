@@ -18,7 +18,7 @@ mongoose.connect(
 
 let db = mongoose.connection;
 
-db.once("open", () => console.log("connected to the database"));
+db.once("open", () => console.log("Connected to MongoDB"));
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -37,9 +37,9 @@ router.get("/getData", (req, res) => {
 // Post data to MongoDB
 router.post("/postData", (req, res) => {
 	let data = new Form();
-	const { id, title } = req.body;
+	const { id, title, description } = req.body;
 
-	if ((!id && id !== 0) || !title) {
+	if ((!id && id !== 0) || !title || !description) {
 		return res.json({
 			success: false,
 			error: "INVALID INPUTS"
@@ -47,6 +47,7 @@ router.post("/postData", (req, res) => {
 	}
 
 	data.title = title;
+	data.description = description;
 	data.id = id;
 	data.save(err => {
 		if (err) return res.json({ success: false, error: err });

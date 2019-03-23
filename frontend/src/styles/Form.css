@@ -1,4 +1,54 @@
 
-.row {
-    border: solid red;
+.FormContainer {
+    margin-bottom: 1%;
+    height: auto;
+    width: 70vw;
+    border-radius: 10px;
+}
+
+.FormRow {
+    background-color: #dfe3ee;
+    box-shadow: 2px 2px 4px #999;
+}
+
+.FormHeader {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background: linear-gradient(90deg, #3b5998, #8b9dc3);
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.FormBody {
+    padding: 1%;
+    padding-bottom: 0;
+    background-color: #ffffff;
+    text-align: justify;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.FormButton {
+    margin-left: 8%;
+    float: right;
+    color: white;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    border: none;
+}
+
+#updateButton {
+    background-color: orange;
+}
+
+#deleteButton {
+    background-color: red;
+}
+
+.FormButton:hover {
+    color: black;
+    cursor: pointer;
 }

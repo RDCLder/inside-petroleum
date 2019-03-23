@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Form from "./components/Form";
-import axios from "axios";
+import CreateForm from "./components/CreateForm";
+import "./styles/App.css";
 
 class App extends Component {
 
   state = {
     forms: [],
-    title: null,
-    description: null,
-    intervalSet: false,
-    // deleteID: null,
-    // updateID: null,
-    // updateTitle: null
+    intervalSet: false
   };
 
   componentDidMount() {
@@ -31,119 +27,28 @@ class App extends Component {
     }
   };
 
-  // Get all data from DB
   getData = () => {
     fetch("http://localhost:3001/api/getData")
       .then(res => res.json())
       .then(res => this.setState({ forms: res.data }))
-    // .then(res => console.log(res.data))
   };
-
-  // Post new data to DB
-  postData = (title) => {
-    let currentIDs = this.state.forms.map(form => form.id);
-    let addID = 0;
-
-    while (currentIDs.includes(addID)) {
-      addID += 1;
-    }
-
-    console.log(currentIDs, addID);
-    axios.post("http://localhost:3001/api/postData", {
-      id: addID,
-      title: title
-    });
-  };
-
-  // // Update existing data in DB
-  // updateData = (updateID, updateTitle) => {
-  //   let objectID = null;
-
-  //   this.state.forms.forEach(form => {
-  //     if (form.id === parseInt(updateID)) {
-  //       objectID = form._id;
-  //     }
-  //   });
-
-  //   axios.post("http://localhost:3001/api/updateData", {
-  //     id: objectID,
-  //     update: {
-  //       title: updateTitle
-  //     }
-  //   });
-  // };
-
-  // // Delete data from DB
-  // deleteData = deleteID => {
-  //   let objectID = null;
-
-  //   this.state.forms.forEach(form => {
-  //     if (form.id === parseInt(deleteID)) {
-  //       objectID = form._id;
-  //     }
-  //   });
-
-  //   axios.delete("http://localhost:3001/api/deleteData", {
-  //     data: {
-  //       id: objectID
-  //     }
-  //   });
-  // };
 
   render() {
     const forms = this.state.forms;
+    console.log(forms);
 
     return (
-      <Container>
-
-        <div style={{ padding: "10px" }}>
-          <input
-            type="text"
-            onChange={e => this.setState({ title: e.target.value })}
-            placeholder="Title"
-            style={{ width: "200px" }}
-          />
-          <button onClick={() => this.postData(this.state.title)}>
-            ADD
-          </button>
-        </div>
-
-        {/* <div style={{ padding: "10px" }}>
-          <input
-            type="text"
-            style={{ width: "200px" }}
-            onChange={e => this.setState({ deleteID: e.target.value })}
-            placeholder="ID"
-          />
-          <button onClick={() => this.deleteData(this.state.deleteID)}>
-            DELETE
-          </button>
-        </div> */}
-
-        {/* <div style={{ padding: "10px" }}>
-          <input
-            type="text"
-            style={{ width: "200px" }}
-            onChange={e => this.setState({ updateID: e.target.value })}
-            placeholder="id of item to update here"
-          />
-          <input
-            type="text"
-            style={{ width: "200px" }}
-            onChange={e => this.setState({ updateTitle: e.target.value })}
-            placeholder="put new value of the item here"
-          />
-          <button
-            onClick={() =>
-              this.updateData(this.state.updateID, this.state.updateTitle)
-            }
-          >
-            UPDATE
-          </button>
-        </div> */}
+      <Container fluid="true" className="AppContainer">
 
         {forms.length <= 0
-          ? "Empty"
+          ? <div className="vertical-center">
+            <Row>
+              <h1>There's nothing here!</h1>
+            </Row>
+            <Row>
+              <h3>Click on the button in the corner to add something.</h3>
+            </Row>
+            </div>
           : forms.map(form => (
             <Form key={form.id}
               id={form.id} 
@@ -151,16 +56,10 @@ class App extends Component {
               title={form.title}
               description={form.description}
             />
-            // <li
-            //   style={{ padding: "10px" }}
-            //   key={form.id}
-            // >
-            //   <h2 style={{ color: "gray" }}>{form.title}</h2>
-            //   <br />
-            //   <p style={{ color: "gray" }}>{form.description}</p>
-            // </li>
           ))
         }
+
+        <CreateForm forms={this.state.forms} />
 
       </Container>
     );

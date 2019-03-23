@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "../styles/Form.css";
 import axios from "axios";
 
@@ -36,16 +36,32 @@ class Form extends React.Component {
 
 	render() {
 		return (
-			<Row>
-				<h3>{this.state.title}</h3>
-				<br/>
-				<p>{this.state.description}</p>
-				<Button variant="danger"
-					onClick={() => this.deleteForm()}
-				>
-					Delete
-				</Button>
-			</Row>
+			<Container className="FormContainer">
+
+				<Row className="FormRow FormHeader">
+					<Col xs={10} className="my-auto">
+						<h4>{this.state.id + 1}. {this.state.title}</h4>
+					</Col>
+					<Col xs={2} className="my-auto">
+						<button className="FormButton"
+							id="deleteButton"
+							onClick={() => this.deleteForm()}
+						>
+							<i className="fas fa-times" />
+						</button>
+						<button className="FormButton"
+							id="updateButton"
+							// onClick={() => this.updateForm()}
+						>
+							<i className="fas fa-pencil-alt" />
+						</button>
+					</Col>
+				</Row>
+				<Row className="FormRow FormBody">
+					<p>{this.state.description}</p>
+				</Row>
+
+			</Container>
 		);
 	}
 }
