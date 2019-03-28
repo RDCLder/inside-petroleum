@@ -9,24 +9,11 @@ class App extends Component {
   state = {
     forms: [],
     currentPage: 1,
-    formsPerPage: 5,
-    intervalSet: false
+    formsPerPage: 5
   };
 
   componentDidMount() {
     this.getData();
-
-    if (!this.state.intervalSet) {
-      let interval = setInterval(this.getData, 500);
-      this.setState({ intervalSet: interval });
-    }
-  };
-
-  componentWillUnmount() {
-    if (this.state.intervalSet) {
-      clearInterval(this.state.intervalSet);
-      this.setState({ intervalSet: null });
-    }
   };
 
   getData = () => {
@@ -48,6 +35,7 @@ class App extends Component {
         _id={form._id}
         title={form.title}
         description={form.description}
+        update={() => this.getData()}
       />
     ));
 
@@ -84,7 +72,7 @@ class App extends Component {
           </div>
         }
 
-        <CreateForm forms={this.state.forms} />
+        <CreateForm forms={this.state.forms} update={() => this.getData()} />
 
       </Container>
     );

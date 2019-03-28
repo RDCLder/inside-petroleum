@@ -31,7 +31,11 @@ class Form extends React.Component {
 			data: {
 				id: this.state._id
 			}
-		});
+		})
+			.then(() => {
+				this.props.update()
+			}
+		)
 	};
 
 	render() {
